@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Range_Invalid</fullName>
+    <active>true</active>
+    <description>Future-dated (planned) transactions are allowed up to one year ahead.</description>
+    <errorConditionFormula>OR(Date__c &lt; DATE(2000, 1, 1), Date__c &gt; TODAY() + 365)</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage>Date must be between 01/01/2000 and one year from today.</errorMessage>
+</ValidationRule>

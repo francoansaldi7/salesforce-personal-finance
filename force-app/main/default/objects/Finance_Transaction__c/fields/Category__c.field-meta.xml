@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <description>Dependent on Type__c: income and expense transactions have separate category lists.</description>
+    <label>Category</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Salary</fullName>
+                <default>false</default>
+                <label>Salary</label>
+            </value>
+            <value>
+                <fullName>Freelance</fullName>
+                <default>false</default>
+                <label>Freelance</label>
+            </value>
+            <value>
+                <fullName>Investments</fullName>
+                <default>false</default>
+                <label>Investments</label>
+            </value>
+            <value>
+                <fullName>Transfer Received</fullName>
+                <default>false</default>
+                <label>Transfer Received</label>
+            </value>
+            <value>
+                <fullName>Refund / Reward</fullName>
+                <default>false</default>
+                <label>Refund / Reward</label>
+            </value>
+            <value>
+                <fullName>Other Income</fullName>
+                <default>false</default>
+                <label>Other Income</label>
+            </value>
+            <value>
+                <fullName>Food</fullName>
+                <default>false</default>
+                <label>Food</label>
+            </value>
+            <value>
+                <fullName>Transport</fullName>
+                <default>false</default>
+                <label>Transport</label>
+            </value>
+            <value>
+                <fullName>Home</fullName>
+                <default>false</default>
+                <label>Home</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+            <value>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+                <label>Entertainment</label>
+            </value>
+            <value>
+                <fullName>Clothing &amp; Shoes</fullName>
+                <default>false</default>
+                <label>Clothing &amp; Shoes</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <label>Technology</label>
+            </value>
+            <value>
+                <fullName>Travel</fullName>
+                <default>false</default>
+                <label>Travel</label>
+            </value>
+            <value>
+                <fullName>Subscriptions</fullName>
+                <default>false</default>
+                <label>Subscriptions</label>
+            </value>
+            <value>
+                <fullName>Debt / Loans</fullName>
+                <default>false</default>
+                <label>Debt / Loans</label>
+            </value>
+            <value>
+                <fullName>Other Expenses</fullName>
+                <default>false</default>
+                <label>Other Expenses</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Salary</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Freelance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Investments</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Transfer Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Refund / Reward</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Income</controllingFieldValue>
+            <valueName>Other Income</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Food</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Transport</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Home</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Health</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Entertainment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Clothing &amp; Shoes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Education</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Technology</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Travel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Subscriptions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Debt / Loans</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Expense</controllingFieldValue>
+            <valueName>Other Expenses</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

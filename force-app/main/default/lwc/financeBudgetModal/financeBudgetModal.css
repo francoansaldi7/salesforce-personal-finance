@@ -1,0 +1,60 @@
+@import 'c/financeStyles';
+
+.intro {
+    margin:      0;
+    line-height: 1.5;
+}
+
+.budget-grid {
+    display:               grid;
+    grid-template-columns: 1fr 1fr;
+    gap:                   0.6rem 1rem;
+}
+
+.budget-row {
+    display:        flex;
+    flex-direction: column;
+    gap:            0.3rem;
+}
+
+.budget-row__label {
+    font-size:   0.8rem;
+    font-weight: 600;
+    color:       var(--fin-text);
+}
+
+.budget-row__input {
+    position: relative;
+    display:  block;
+}
+
+.budget-row__prefix {
+    position:  absolute;
+    left:      0.75rem;
+    top:       50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color:     var(--fin-text-muted);
+}
+
+.budget-input {
+    padding: 0.5rem 0.75rem 0.5rem 2.1rem;
+}
+
+.total-row {
+    display:         flex;
+    justify-content: space-between;
+    padding-top:     0.75rem;
+    border-top:      1px solid var(--fin-border);
+    font-size:       0.85rem;
+    color:           var(--fin-text-muted);
+}
+
+.total-row__value {
+    font-weight: 700;
+    color:       var(--fin-cyan);
+}
+
+@media (max-width: 400px) {
+    .budget-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount_AUD__c</fullName>
+    <description>Amount__c converted to AUD at Exchange_Rate__c. Set by FinanceTransactionTrigger; stored (not a formula) so it can be summed in aggregate queries.</description>
+    <label>Amount (AUD)</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

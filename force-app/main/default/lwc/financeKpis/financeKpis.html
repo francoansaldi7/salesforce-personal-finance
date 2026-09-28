@@ -1,0 +1,50 @@
+<template>
+    <div class="kpi-grid">
+        <div class="kpi-tile kpi-tile--income">
+            <div class="kpi-tile__label">Income</div>
+            <div class="kpi-tile__value value--income" data-id="income">
+                <template lwc:if={loading}><span class="skeleton" aria-label="Loading"></span></template>
+                <template lwc:else>{incomeFormatted}</template>
+            </div>
+        </div>
+
+        <div class="kpi-tile kpi-tile--expense">
+            <div class="kpi-tile__label">Expenses</div>
+            <div class="kpi-tile__value value--expense" data-id="expenses">
+                <template lwc:if={loading}><span class="skeleton" aria-label="Loading"></span></template>
+                <template lwc:else>{expensesFormatted}</template>
+            </div>
+        </div>
+
+        <div class="kpi-tile">
+            <div class="kpi-tile__label">Net Balance</div>
+            <div class={balanceClass} data-id="balance">
+                <template lwc:if={loading}><span class="skeleton" aria-label="Loading"></span></template>
+                <template lwc:else>{balanceFormatted}</template>
+            </div>
+        </div>
+
+        <div class="kpi-tile kpi-tile--savings">
+            <div class="kpi-tile__label">Savings Rate</div>
+            <div class="kpi-tile__value value--savings" data-id="savings">
+                <template lwc:if={loading}><span class="skeleton" aria-label="Loading"></span></template>
+                <template lwc:else>{savingsRateFormatted}</template>
+            </div>
+            <div class="savings-track">
+                <div class="savings-fill" style={savingsBarStyle}></div>
+            </div>
+        </div>
+    </div>
+
+    <template lwc:if={showCurrencyMix}>
+        <div class="currency-mix">
+            <span class="currency-mix__label">Original currencies this month</span>
+            <template for:each={currencyChips} for:item="chip">
+                <span key={chip.code} class="currency-chip">
+                    <span class="currency-chip__code">{chip.code}</span>
+                    <span class="currency-chip__detail">{chip.detail}</span>
+                </span>
+            </template>
+        </div>
+    </template>
+</template>

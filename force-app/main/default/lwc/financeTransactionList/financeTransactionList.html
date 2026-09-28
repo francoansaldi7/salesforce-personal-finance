@@ -1,0 +1,88 @@
+<template>
+    <div class="content-panel">
+        <div class="panel-header">
+            <lightning-icon icon-name="utility:list" size="x-small" class="panel-icon"></lightning-icon>
+            <span class="panel-header__title">Transactions</span>
+            <span class="count-badge">{visibleCount}</span>
+        </div>
+
+        <div class="filters">
+            <input
+                type="search"
+                class="form-input search-input"
+                placeholder="Search descriptions..."
+                aria-label="Search transactions"
+                value={searchTerm}
+                oninput={handleSearchInput} />
+            <div class="filters__row">
+                <c-finance-select
+                    class="type-filter"
+                    label="Filter by type"
+                    value={typeFilter}
+                    options={typeOptions}
+                    onchange={handleTypeFilterChange}>
+                </c-finance-select>
+                <c-finance-select
+                    class="category-filter"
+                    label="Filter by category"
+                    value={categoryFilter}
+                    options={categoryOptions}
+                    onchange={handleCategoryFilterChange}>
+                </c-finance-select>
+            </div>
+        </div>
+
+        <template lwc:if={pendingDelete}>
+            <div class="undo-bar" role="status">
+                <span class="undo-bar__text">Deleted {pendingDelete.label}</span>
+                <button class="undo-bar__btn" onclick={handleUndo}>Undo</button>
+            </div>
+        </template>
+
+        <div class="list-body">
+            <template lwc:if={isLoading}>
+                <div class="loading-overlay"><div class="fin-spinner" role="status" aria-label="Loading"></div></div>
+            </template>
+            <template lwc:if={hasTransactions}>
+                <ul class="txn-list">
+                    <template for:each={transactions} for:item="txn">
+                        <li key={txn.id} class="txn-item">
+                            <div class={txn.dotClass}></div>
+                            <div class="txn-info">
+                                <div class="txn-label">{txn.label}</div>
+                                <div class="txn-meta">
+                                    {txn.meta}
+                                    <template lwc:if={txn.isRecurring}>
+                                        <span class="recurring-pill" title={txn.recurrenceLabel}>&#8635; {txn.recurrenceLabel}</span>
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="txn-amounts">
+                                <div class={txn.amountClass}>{txn.amount}</div>
+                                <template lwc:if={txn.audEquivalent}>
+                                    <div class="txn-aud">{txn.audEquivalent}</div>
+                                </template>
+                            </div>
+                            <button class="icon-btn edit-button" data-id={txn.id} onclick={handleEdit} title="Edit" aria-label="Edit transaction">&#9998;</button>
+                            <button class="icon-btn icon-btn--danger delete-button" data-id={txn.id} onclick={handleDelete} title="Delete" aria-label="Delete transaction">&#215;</button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:elseif={showEmptyState}>
+                <div class="empty-state">
+                    <lightning-icon icon-name="utility:inbox" size="medium" class="empty-icon"></lightning-icon>
+                    <p>{emptyMessage}</p>
+                </div>
+            </template>
+        </div>
+
+        <template lwc:if={showPagination}>
+            <div class="pagination-row">
+                <button class="btn-ghost pagination-btn" onclick={handlePreviousPage} disabled={isFirstPage}>&#8249; Previous</button>
+                <span class="pagination-label">{paginationLabel}</span>
+                <button class="btn-ghost pagination-btn" onclick={handleNextPage} disabled={isLastPage}>Next &#8250;</button>
+            </div>
+        </template>
+    </div>
+</template>

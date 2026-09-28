@@ -1,0 +1,65 @@
+<template>
+    <div class="fin-home">
+
+        <div class={headerClass}>
+            <template lwc:if={isLoading}>
+                <div class="header-progress" role="progressbar" aria-label="Loading"></div>
+            </template>
+            <div class="fin-header__left">
+                <div class="fin-header__title">Personal Finance</div>
+                <div class="fin-header__subtitle">{greeting}</div>
+                <div class="fin-header__nav">
+                    <button class="nav-btn prev-month" onclick={handlePreviousMonth} title="Previous month" aria-label="Previous month">&#8249;</button>
+                    <span class="nav-month">{monthLabel}</span>
+                    <button class="nav-btn next-month" onclick={handleNextMonth} disabled={isAtLatestMonth} title="Next month" aria-label="Next month">&#8250;</button>
+                    <template lwc:if={isFutureMonth}>
+                        <span class="planned-badge">Planned</span>
+                    </template>
+                    <template lwc:if={showThisMonthButton}>
+                        <button class="today-btn" onclick={handleThisMonth}>This month</button>
+                    </template>
+                </div>
+            </div>
+
+            <div class="fin-header__center">
+                <div class="header-balance-label">Balance this month</div>
+                <div class={monthBalanceClass}>{monthBalanceFormatted}</div>
+            </div>
+
+            <div class="fin-header__right">
+                <div class="header-balance-label">Balance {selectedYear}</div>
+                <div class={annualBalanceClass}>{annualBalanceFormatted}</div>
+            </div>
+        </div>
+
+        <c-finance-kpis summary={monthSummary} currency-mix={currencyMix} loading={isLoading}></c-finance-kpis>
+
+        <div class="quick-actions">
+            <button class="action-btn action-btn--income add-income" onclick={handleAddIncome}>&#8593; &nbsp;Add Income</button>
+            <button class="action-btn action-btn--expense add-expense" onclick={handleAddExpense}>&#8595; &nbsp;Add Expense</button>
+        </div>
+
+        <div class="main-content">
+            <c-finance-category-breakdown
+                categories={categories}
+                loading={isLoading}
+                onmanagebudgets={handleManageBudgets}>
+            </c-finance-category-breakdown>
+
+            <c-finance-transaction-list
+                lwc:ref="transactionList"
+                month={selectedMonth}
+                year={selectedYear}
+                onedittransaction={handleEditTransaction}
+                ontransactionschanged={handleTransactionsChanged}>
+            </c-finance-transaction-list>
+        </div>
+
+        <div class="trend-section">
+            <c-finance-trend-chart points={trend} loading={isLoading}></c-finance-trend-chart>
+        </div>
+
+        <c-finance-transaction-modal lwc:ref="transactionModal" onsaved={handleTransactionSaved}></c-finance-transaction-modal>
+        <c-finance-budget-modal lwc:ref="budgetModal" onsaved={handleBudgetsSaved}></c-finance-budget-modal>
+    </div>
+</template>

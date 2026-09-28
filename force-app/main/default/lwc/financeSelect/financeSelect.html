@@ -1,0 +1,40 @@
+<template>
+    <div class="select">
+        <button
+            type="button"
+            class={triggerClass}
+            aria-haspopup="listbox"
+            aria-expanded={ariaExpanded}
+            aria-label={label}
+            onclick={handleTriggerClick}
+            onkeydown={handleKeyDown}>
+            <span class="trigger__label">{displayLabel}</span>
+            <svg class="trigger__chevron" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M2.5 4.5 6 8l3.5-3.5"></path>
+            </svg>
+        </button>
+
+        <template lwc:if={isOpen}>
+            <ul class={listboxClass} role="listbox" aria-label={label} style={listboxStyle}>
+                <template for:each={optionItems} for:item="option">
+                    <li
+                        key={option.key}
+                        class={option.className}
+                        role="option"
+                        aria-selected={option.ariaSelected}
+                        data-index={option.index}
+                        onmousedown={handleOptionMouseDown}
+                        onmouseenter={handleOptionHover}
+                        onclick={handleOptionClick}>
+                        <span class="option__label">{option.label}</span>
+                        <template lwc:if={option.isSelected}>
+                            <svg class="option__check" viewBox="0 0 12 12" aria-hidden="true">
+                                <path d="M2 6.5 4.8 9 10 3.5"></path>
+                            </svg>
+                        </template>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </div>
+</template>

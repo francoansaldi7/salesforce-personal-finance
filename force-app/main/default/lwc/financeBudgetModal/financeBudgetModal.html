@@ -1,0 +1,51 @@
+<template>
+    <template lwc:if={isOpen}>
+        <div class="overlay" onclick={handleClose} onkeydown={handleKeyDown}>
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="budget-modal-title" onclick={stopPropagation}>
+                <div class="modal__header">
+                    <h2 class="modal__title" id="budget-modal-title">Monthly Budgets</h2>
+                    <button class="icon-btn icon-btn--danger" onclick={handleClose} aria-label="Close">&#215;</button>
+                </div>
+
+                <div class="modal__body">
+                    <p class="form-hint intro">
+                        Set a monthly limit in AUD for any expense category. Leave a category blank for no budget.
+                        You'll see progress bars on the dashboard, amber from 80% and red once you go over.
+                    </p>
+
+                    <template lwc:if={isLoading}>
+                        <div class="loading-wrap">
+                            <div class="fin-spinner" role="status" aria-label="Loading"></div>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <div class="budget-grid">
+                            <template for:each={rows} for:item="row">
+                                <label key={row.category} class="budget-row">
+                                    <span class="budget-row__label">{row.label}</span>
+                                    <span class="budget-row__input">
+                                        <span class="budget-row__prefix">A$</span>
+                                        <input type="number" class="form-input budget-input" min="0" step="1"
+                                            placeholder="No budget" data-category={row.category}
+                                            value={row.value} onchange={handleLimitChange} />
+                                    </span>
+                                </label>
+                            </template>
+                        </div>
+                        <div class="total-row">
+                            <span>Total monthly budget</span>
+                            <span class="total-row__value">{totalBudget}</span>
+                        </div>
+                    </template>
+
+                    <template lwc:if={error}><span class="form-error budget-error">{error}</span></template>
+                </div>
+
+                <div class="modal__footer">
+                    <button class="btn-ghost" onclick={handleClose}>Cancel</button>
+                    <button class="btn-primary save-budgets" onclick={handleSave} disabled={isSaving}>{saveLabel}</button>
+                </div>
+            </section>
+        </div>
+    </template>
+</template>

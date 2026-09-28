@@ -1,0 +1,96 @@
+@import 'c/financeStyles';
+
+.type-selector {
+    display: flex;
+}
+
+.type-btn {
+    flex:        1;
+    padding:     0.65rem;
+    border:      1px solid var(--fin-border);
+    background:  var(--fin-surface-2);
+    color:       var(--fin-text-muted);
+    font-size:   0.9rem;
+    font-weight: 600;
+    cursor:      pointer;
+    transition:  all var(--transition);
+}
+
+.type-btn:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.type-btn:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; border-left: none; }
+
+.type-btn--active.type-btn--income {
+    background:   var(--fin-green-dim);
+    border-color: var(--fin-green);
+    color:        var(--fin-green);
+}
+
+.type-btn--active.type-btn--expense {
+    background:   var(--fin-purple-dim);
+    border-color: var(--fin-purple);
+    color:        var(--fin-purple);
+}
+
+.rate-group {
+    background:    var(--fin-cyan-dim);
+    border:        1px solid rgba(6, 182, 212, 0.2);
+    border-radius: var(--radius-sm);
+    padding:       0.75rem 0.85rem;
+}
+
+.rate-group__header,
+.rate-group__footer {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+    gap:             0.5rem;
+}
+
+.link-btn {
+    background:  transparent;
+    border:      none;
+    color:       var(--fin-cyan);
+    font-size:   0.75rem;
+    font-weight: 600;
+    cursor:      pointer;
+    padding:     0;
+}
+
+.link-btn:hover:not(:disabled) { text-decoration: underline; }
+.link-btn:disabled { opacity: 0.5; cursor: wait; }
+
+.rate-credit {
+    align-self:      flex-end;
+    font-size:       0.68rem;
+    color:           var(--fin-text-muted);
+    text-decoration: none;
+}
+
+.rate-credit:hover {
+    color:           var(--fin-cyan);
+    text-decoration: underline;
+}
+
+.aud-preview {
+    font-size:   0.85rem;
+    font-weight: 700;
+    color:       var(--fin-cyan);
+    white-space: nowrap;
+}
+
+.btn-save {
+    border:        none;
+    border-radius: var(--radius-sm);
+    padding:       0.55rem 1.5rem;
+    font-size:     0.88rem;
+    font-weight:   700;
+    cursor:        pointer;
+    color:         white;
+    transition:    filter var(--transition), transform var(--transition);
+}
+
+.btn-save:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-save:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-save--income  { background: linear-gradient(135deg, #059669, #10b981); }
+.btn-save--expense { background: linear-gradient(135deg, #5b21b6, #7c3aed); }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>personalFinanceLogo</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <defaultLandingTab>Personal_Finance_Home</defaultLandingTab>
+    <description>Personal finance tracker: log income and expenses in multiple currencies, track monthly budgets, and see your balance and 12-month trend in AUD.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Personal Finance</label>
+    <navType>Standard</navType>
+    <tabs>Personal_Finance_Home</tabs>
+    <tabs>Finance_Transaction__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

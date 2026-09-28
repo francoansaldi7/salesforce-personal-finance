@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exchange_Rate__c</fullName>
+    <description>AUD per 1 unit of Currency__c, locked in when the transaction is saved so historical totals never drift. Always 1 for AUD.</description>
+    <label>Exchange Rate (to AUD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>8</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

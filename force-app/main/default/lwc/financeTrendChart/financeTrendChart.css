@@ -1,0 +1,150 @@
+@import 'c/financeStyles';
+
+.legend {
+    display:     flex;
+    align-items: center;
+    gap:         0.4rem;
+    font-size:   0.75rem;
+    color:       var(--fin-text-muted);
+}
+
+.legend__swatch {
+    width:         10px;
+    height:        10px;
+    border-radius: 3px;
+    margin-left:   0.5rem;
+}
+
+.legend__swatch--income  { background: var(--fin-green); }
+.legend__swatch--expense { background: var(--fin-red); }
+
+.chart-wrap {
+    position: relative;
+}
+
+.axis-label {
+    position:       absolute;
+    left:           0;
+    font-size:      0.68rem;
+    color:          var(--fin-text-muted);
+    pointer-events: none;
+}
+
+/* Plot spans y 8→180 of the 180px-tall SVG: sit each label just above its gridline. */
+.axis-label--top { top: -8px; }
+.axis-label--mid { top: 78px; }
+
+.chart {
+    width:    100%;
+    height:   180px;
+    display:  block;
+}
+
+.gridline,
+.baseline {
+    vector-effect: non-scaling-stroke;
+}
+
+.gridline {
+    stroke:           var(--fin-border);
+    stroke-dasharray: 4 4;
+}
+
+.baseline {
+    stroke: rgba(255, 255, 255, 0.15);
+}
+
+.bar {
+    cursor:     pointer;
+    transition: opacity var(--transition), filter var(--transition);
+}
+
+.chart--hovering .bar {
+    opacity: 0.35;
+}
+
+.chart--hovering .bar--hovered {
+    opacity: 1;
+    filter:  brightness(1.15) drop-shadow(0 0 6px rgba(255, 255, 255, 0.15));
+}
+
+/* ── Tooltip ────────────────────────────────────────────────────────────── */
+.tooltip {
+    position:       absolute;
+    z-index:        3;
+    pointer-events: none;
+    min-width:      9.5rem;
+    padding:        0.55rem 0.75rem;
+    background:     var(--fin-surface-2);
+    border:         1px solid var(--fin-border);
+    border-radius:  var(--radius-sm);
+    box-shadow:     var(--shadow);
+    white-space:    nowrap;
+    animation:      fin-fade-in 0.12s ease;
+}
+
+.tooltip--income  { border-top: 2px solid var(--fin-green); }
+.tooltip--expense { border-top: 2px solid var(--fin-red); }
+
+.tooltip__month {
+    font-size:      0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color:          var(--fin-text-muted);
+    margin-bottom:  0.3rem;
+}
+
+.tooltip__row {
+    display:     flex;
+    align-items: center;
+    gap:         0.45rem;
+}
+
+.tooltip__swatch {
+    width:         9px;
+    height:        9px;
+    border-radius: 3px;
+}
+
+.tooltip--income  .tooltip__swatch { background: var(--fin-green); }
+.tooltip--expense .tooltip__swatch { background: var(--fin-red); }
+
+.tooltip__label {
+    font-size: 0.8rem;
+    color:     var(--fin-text);
+}
+
+.tooltip__amount {
+    margin-left: auto;
+    padding-left: 0.75rem;
+    font-size:   0.95rem;
+    font-weight: 700;
+}
+
+.tooltip--income  .tooltip__amount { color: var(--fin-green); }
+.tooltip--expense .tooltip__amount { color: var(--fin-red); }
+
+.bar--income  { fill: var(--fin-green); }
+.bar--expense { fill: var(--fin-red); }
+
+.month-labels {
+    display:    flex;
+    margin-top: 0.4rem;
+}
+
+.month-label {
+    flex:       1;
+    text-align: center;
+    font-size:  0.7rem;
+    color:      var(--fin-text-muted);
+    white-space: nowrap;
+}
+
+.month-label--selected {
+    color:       var(--fin-cyan);
+    font-weight: 700;
+}
+
+@media (max-width: 540px) {
+    .month-label { font-size: 0.6rem; }
+}

@@ -1,0 +1,87 @@
+<template>
+    <template lwc:if={isOpen}>
+        <div class="overlay" onclick={handleClose} onkeydown={handleKeyDown}>
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="transaction-modal-title" onclick={stopPropagation}>
+                <div class="modal__header">
+                    <h2 class="modal__title" id="transaction-modal-title">{title}</h2>
+                    <button class="icon-btn icon-btn--danger" onclick={handleClose} aria-label="Close">&#215;</button>
+                </div>
+
+                <div class="modal__body">
+                    <div class="type-selector">
+                        <button class={incomeButtonClass} data-type="Income" onclick={handleTypeSelect}>&#8593; Income</button>
+                        <button class={expenseButtonClass} data-type="Expense" onclick={handleTypeSelect}>&#8595; Expense</button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="amount">Amount *</label>
+                            <input id="amount" type="number" class="form-input amount-input" placeholder="0.00"
+                                min="0.01" step="0.01" value={form.amount} onchange={handleAmountChange} />
+                            <template lwc:if={errors.amount}><span class="form-error">{errors.amount}</span></template>
+                        </div>
+                        <div class="form-group">
+                            <span class="form-label">Currency</span>
+                            <c-finance-select class="currency-input" label="Currency"
+                                value={form.currencyCode} options={currencyOptions} onchange={handleCurrencyChange}>
+                            </c-finance-select>
+                        </div>
+                    </div>
+
+                    <template lwc:if={isForeign}>
+                        <div class="form-group rate-group">
+                            <div class="rate-group__header">
+                                <label class="form-label" for="rate">Exchange rate (A$ per 1 {form.currencyCode}) *</label>
+                                <button class="link-btn live-rate-btn" onclick={handleUseLiveRate} disabled={isFetchingRate}>Use live rate</button>
+                            </div>
+                            <input id="rate" type="number" class="form-input rate-input" min="0" step="any"
+                                value={form.exchangeRate} onchange={handleRateChange} />
+                            <div class="rate-group__footer">
+                                <span class="form-hint rate-hint">{rateHint}</span>
+                                <span class="aud-preview">{audPreview}</span>
+                            </div>
+                            <a class="rate-credit" href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">Rates by Exchange Rate API</a>
+                            <template lwc:if={rateError}><span class="form-error rate-error">{rateError}</span></template>
+                            <template lwc:if={errors.exchangeRate}><span class="form-error">{errors.exchangeRate}</span></template>
+                        </div>
+                    </template>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <span class="form-label">Category *</span>
+                            <c-finance-select class="category-input" label="Category"
+                                placeholder="Choose a category..." value={form.category} options={categoryOptions}
+                                onchange={handleCategoryChange}>
+                            </c-finance-select>
+                            <template lwc:if={errors.category}><span class="form-error">{errors.category}</span></template>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="date">Date *</label>
+                            <input id="date" type="date" class="form-input date-input" min="2000-01-01" max={maxDate}
+                                value={form.transactionDate} onchange={handleDateChange} />
+                            <template lwc:if={errors.transactionDate}><span class="form-error">{errors.transactionDate}</span></template>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description">Description</label>
+                        <input id="description" type="text" class="form-input description-input" placeholder="Optional note..."
+                            maxlength="255" value={form.description} onchange={handleDescriptionChange} />
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Repeat</span>
+                        <c-finance-select class="recurrence-input" label="Repeat"
+                            value={form.recurrence} options={recurrenceOptions} onchange={handleRecurrenceChange}>
+                        </c-finance-select>
+                    </div>
+                </div>
+
+                <div class="modal__footer">
+                    <button class="btn-ghost" onclick={handleClose}>Cancel</button>
+                    <button class={saveButtonClass} onclick={handleSave} disabled={isSaving}>{saveLabel}</button>
+                </div>
+            </section>
+        </div>
+    </template>
+</template>

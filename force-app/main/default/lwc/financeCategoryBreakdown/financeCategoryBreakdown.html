@@ -1,0 +1,39 @@
+<template>
+    <div class="content-panel">
+        <div class="panel-header">
+            <lightning-icon icon-name="utility:chart" size="x-small" class="panel-icon"></lightning-icon>
+            <span class="panel-header__title">Spending by Category</span>
+            <button class="btn-ghost budgets-btn" onclick={handleManageBudgets}>Budgets</button>
+        </div>
+        <div class="panel-body panel-body--loadable">
+            <template lwc:if={loading}>
+                <div class="loading-overlay"><div class="fin-spinner" role="status" aria-label="Loading"></div></div>
+            </template>
+            <template lwc:if={hasCategories}>
+                <template for:each={rows} for:item="row">
+                    <div key={row.category} class="cat-row">
+                        <div class="cat-row__header">
+                            <span class="cat-row__name">{row.category}</span>
+                            <span class="cat-row__amount">{row.formattedTotal}</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style={row.barStyle}></div>
+                        </div>
+                        <template lwc:if={row.hasBudget}>
+                            <div class="budget-track">
+                                <div class={row.budgetFillClass} style={row.budgetBarStyle}></div>
+                            </div>
+                            <div class={row.budgetTextClass}>{row.budgetText}</div>
+                        </template>
+                    </div>
+                </template>
+            </template>
+            <template lwc:elseif={showEmptyState}>
+                <div class="empty-state">
+                    <lightning-icon icon-name="utility:smiley_and_people" size="medium" class="empty-icon"></lightning-icon>
+                    <p>No expenses this month.</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Currency__c</fullName>
+    <description>ISO code of the currency Amount__c is expressed in. AUD is the base currency all totals are reported in.</description>
+    <label>Currency</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AUD</fullName>
+                <default>true</default>
+                <label>AUD</label>
+            </value>
+            <value>
+                <fullName>USD</fullName>
+                <default>false</default>
+                <label>USD</label>
+            </value>
+            <value>
+                <fullName>UYU</fullName>
+                <default>false</default>
+                <label>UYU</label>
+            </value>
+            <value>
+                <fullName>ARS</fullName>
+                <default>false</default>
+                <label>ARS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

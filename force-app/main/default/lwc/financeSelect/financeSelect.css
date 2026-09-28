@@ -1,0 +1,126 @@
+@import 'c/financeStyles';
+
+.select {
+    position: relative;
+    width:    100%;
+}
+
+.trigger {
+    display:       flex;
+    align-items:   center;
+    gap:           0.5rem;
+    width:         100%;
+    background:    var(--fin-surface-2);
+    border:        1px solid var(--fin-border);
+    border-radius: var(--radius-sm);
+    color:         var(--fin-text);
+    padding:       0.6rem 0.85rem;
+    font-size:     0.92rem;
+    font-family:   inherit;
+    text-align:    left;
+    cursor:        pointer;
+    transition:    border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.trigger:hover {
+    border-color: rgba(6, 182, 212, 0.4);
+}
+
+.trigger:focus-visible,
+.trigger--open {
+    outline:      none;
+    border-color: var(--fin-cyan);
+    box-shadow:   0 0 0 3px var(--fin-cyan-dim);
+}
+
+.trigger--placeholder .trigger__label {
+    color: var(--fin-text-muted);
+}
+
+.trigger__label {
+    flex:          1;
+    min-width:     0;
+    white-space:   nowrap;
+    overflow:      hidden;
+    text-overflow: ellipsis;
+}
+
+.trigger__chevron {
+    width:           12px;
+    height:          12px;
+    flex-shrink:     0;
+    fill:            none;
+    stroke:          var(--fin-cyan);
+    stroke-width:    1.6;
+    stroke-linecap:  round;
+    stroke-linejoin: round;
+    transition:      transform var(--transition);
+}
+
+.trigger--open .trigger__chevron {
+    transform: rotate(180deg);
+}
+
+.listbox {
+    position:      fixed;
+    z-index:       9500;
+    margin:        0;
+    padding:       0.35rem;
+    list-style:    none;
+    overflow-y:    auto;
+    background:    var(--fin-surface-2);
+    border:        1px solid rgba(6, 182, 212, 0.25);
+    border-radius: var(--radius-sm);
+    box-shadow:    var(--shadow), var(--fin-cyan-glow);
+}
+
+.listbox--placed {
+    animation: listbox-in 0.12s ease-out;
+}
+
+.listbox::-webkit-scrollbar       { width: 6px; }
+.listbox::-webkit-scrollbar-thumb { background: var(--fin-surface-3); border-radius: 9999px; }
+
+.option {
+    display:       flex;
+    align-items:   center;
+    gap:           0.5rem;
+    padding:       0.5rem 0.65rem;
+    border-radius: 7px;
+    font-size:     0.88rem;
+    color:         var(--fin-text);
+    cursor:        pointer;
+    user-select:   none;
+}
+
+.option--active {
+    background: var(--fin-cyan-dim);
+}
+
+.option--selected {
+    color:       var(--fin-cyan);
+    font-weight: 600;
+}
+
+.option__label {
+    flex: 1;
+}
+
+.option__check {
+    width:           12px;
+    height:          12px;
+    fill:            none;
+    stroke:          var(--fin-cyan);
+    stroke-width:    1.8;
+    stroke-linecap:  round;
+    stroke-linejoin: round;
+}
+
+@keyframes listbox-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .listbox--placed { animation: none; }
+}

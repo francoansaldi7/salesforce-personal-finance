@@ -1,0 +1,61 @@
+<template>
+    <div class="content-panel">
+        <div class="panel-header">
+            <lightning-icon icon-name="utility:trending" size="x-small" class="panel-icon"></lightning-icon>
+            <span class="panel-header__title">Last 12 Months</span>
+            <span class="legend">
+                <span class="legend__swatch legend__swatch--income"></span>Income
+                <span class="legend__swatch legend__swatch--expense"></span>Expenses
+            </span>
+        </div>
+        <div class="panel-body panel-body--loadable">
+            <template lwc:if={loading}>
+                <div class="loading-overlay"><div class="fin-spinner" role="status" aria-label="Loading"></div></div>
+            </template>
+            <template lwc:if={hasData}>
+                <div class="chart-wrap">
+                    <span class="axis-label axis-label--top">{topLabel}</span>
+                    <span class="axis-label axis-label--mid">{midLabel}</span>
+                    <svg class={chartClass} viewBox={viewBox} preserveAspectRatio="none" role="img" aria-label="Income and expenses for the last 12 months">
+                        <line class="gridline" x1="0" x2={chartWidth} y1={toplineY} y2={toplineY}></line>
+                        <line class="gridline" x1="0" x2={chartWidth} y1={midlineY} y2={midlineY}></line>
+                        <line class="baseline" x1="0" x2={chartWidth} y1={baselineY} y2={baselineY}></line>
+                        <template for:each={groups} for:item="group">
+                            <g key={group.key}>
+                                <rect class={group.incomeClass} x={group.incomeX} y={group.incomeY} width={barWidth} height={group.incomeHeight}
+                                    role="img" aria-label={group.incomeLabel}
+                                    data-index={group.index} data-series="income"
+                                    onmouseenter={handleBarEnter} onmouseleave={handleBarLeave}></rect>
+                                <rect class={group.expenseClass} x={group.expenseX} y={group.expenseY} width={barWidth} height={group.expenseHeight}
+                                    role="img" aria-label={group.expenseLabel}
+                                    data-index={group.index} data-series="expense"
+                                    onmouseenter={handleBarEnter} onmouseleave={handleBarLeave}></rect>
+                            </g>
+                        </template>
+                    </svg>
+                    <template lwc:if={tooltip}>
+                        <div class={tooltip.className} style={tooltip.style} role="tooltip">
+                            <div class="tooltip__month">{tooltip.month}</div>
+                            <div class="tooltip__row">
+                                <span class="tooltip__swatch"></span>
+                                <span class="tooltip__label">{tooltip.label}</span>
+                                <span class="tooltip__amount">{tooltip.amount}</span>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="month-labels">
+                        <template for:each={groups} for:item="group">
+                            <span key={group.key} class={group.labelClass}>{group.label}</span>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <template lwc:elseif={showEmptyState}>
+                <div class="empty-state">
+                    <lightning-icon icon-name="utility:graph" size="medium" class="empty-icon"></lightning-icon>
+                    <p>No transactions in the last 12 months.</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
