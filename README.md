@@ -4,6 +4,31 @@ A multi-currency personal finance tracker built entirely on the Salesforce Platf
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## Demo
+
+![App demo](screenshots/demo.gif)
+
+## Screenshots
+
+**Dashboard**: the month's and the year's balance, the KPI tiles, and the month's original currencies (a July trip paid in Uruguayan and Argentine pesos, alongside USD and AUD):
+
+![Dashboard overview](screenshots/dashboard-overview.png)
+
+**Spending and transactions**: spending by category with budget bars on one side; the searchable, filterable transaction list on the other, here with a 5-second Undo after a delete:
+
+![Spending by category and transaction list](screenshots/undo-delete.png)
+
+**12-month trend**: hover any bar for that month's income or expenses:
+
+![12-month trend chart with tooltip](screenshots/trend-chart-tooltip.png)
+
+<table>
+<tr>
+<td width="50%"><strong>Add/edit form</strong>: themed dropdowns, with categories that change with the transaction type<br><br><img src="screenshots/category-dropdown.png" alt="New transaction form with the category dropdown open"></td>
+<td width="50%"><strong>Monthly budgets</strong>: an AUD limit per expense category<br><br><img src="screenshots/budgets.png" alt="Monthly budgets form"></td>
+</tr>
+</table>
+
 ## Features
 
 ### Tracking
