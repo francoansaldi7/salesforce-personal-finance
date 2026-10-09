@@ -130,19 +130,22 @@ scripts/apex/seed-sample-data.apex                 # Optional demo data
 
 ## Deployment
 
-Requires the [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli).
+New to Salesforce deployments? Follow the **[step-by-step installation guide (PDF)](docs/Installation-Guide.pdf)**. It walks through everything from installing the CLI to opening the app in a free Trailhead Playground, with screenshots and a troubleshooting section.
+
+Quick version, using the [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli):
 
 ```bash
 # 1. Authorize the target org
 sf org login web --alias myOrg
 
 # 2. Deploy everything (objects, Apex, components, app, permission set, Remote Site Setting)
-sf project deploy start --target-org myOrg
+sf project deploy start --source-dir force-app --target-org myOrg
 
 # 3. Give yourself access to the app
 sf org assign permset --name Finance_Full_Access --target-org myOrg
 
-# 4. (Optional) Load ~9 months of realistic sample data ending this month. Run it once.
+# 4. (Optional) Load ~9 months of realistic sample data ending this month.
+#    Runs only in an org with no transactions yet; otherwise it stops without changing anything.
 sf apex run --file scripts/apex/seed-sample-data.apex --target-org myOrg
 ```
 

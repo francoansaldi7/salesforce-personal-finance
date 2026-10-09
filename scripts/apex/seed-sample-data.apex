@@ -8,6 +8,15 @@
 // with their first occurrence only; the app's own materializeDueRecurrences() generates the rest.
 // Format: type|category|amount|currency|rateToAud|monthOffset|dayOfMonth|description|recurrence
 
+// Safety check: sample data only goes into an org with no transactions yet, so it can never
+// be mixed with someone's real records (or loaded twice).
+class SeedSafetyException extends Exception {}
+Integer existingTransactions = [SELECT COUNT() FROM Finance_Transaction__c];
+if (existingTransactions > 0) {
+    throw new SeedSafetyException('This org already has ' + existingTransactions
+        + ' transactions: sample data is only loaded into an empty org. Nothing was changed.');
+}
+
 List<String> rows = new List<String>{
     'Income|Salary|3150|AUD||-8|8|Salary - Acme Digital|Fortnightly',
     'Expense|Home|560|AUD||-8|5|Rent|Weekly',
